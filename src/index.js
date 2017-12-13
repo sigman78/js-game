@@ -41,7 +41,7 @@ const setup = () => {
 
 //    const ghostTex = getTexture("images/ghost.png");
 //    ghostSprite = new PIXI.Sprite(ghostTex);
-    const ids = PIXI.loader.resources["assets/sprites.json"].textures;
+    const ids = PIXI.loader.resources["sprites.json"].textures;
     ghostSprite = new PIXI.Sprite(ids["001"]);
 
     ghostSprite.position.set(160, 80);
@@ -67,7 +67,7 @@ window.addEventListener("load", () => {
     // List of resources to load
     const resources = [
         "images/ghost.png",
-        "assets/sprites.json"
+        "sprites.json"
     ];
 
     // Then load the images

@@ -21,8 +21,8 @@ export default {
                 glob: "*.png"
             },
             target: {
-                image: path.resolve(__dirname, '../static/assets/sprites.png'),
-                css: [[path.resolve(__dirname, '../static/assets/sprites.json'), {format: 'atlas'}]]
+                image: path.resolve(__dirname, '../static-gen/sprites.png'),
+                css: [[path.resolve(__dirname, '../static-gen/sprites.json'), {format: 'atlas'}]]
             },
             customTemplates: {
                 'atlas': TexturePacker

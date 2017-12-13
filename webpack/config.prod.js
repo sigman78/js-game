@@ -18,7 +18,8 @@ export default {
             root: path.resolve(__dirname, "..")
         }),
         new copyWebpackPlugin([
-            { from: path.resolve(__dirname, "../static") }
+            { from: path.resolve(__dirname, "../static") },
+            { from: path.resolve(__dirname, "../static-gen") }
         ])
     ]
 };

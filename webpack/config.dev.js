@@ -38,5 +38,8 @@ export default {
         index: "index.html"
     },
 
-    contentBase: path.resolve(`${__dirname}/../static`)
+    contentBase: [
+        path.resolve(__dirname, "../static"),
+        path.resolve(__dirname, "../static-gen")
+    ]
 };

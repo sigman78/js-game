@@ -11,3 +11,4 @@ dist/
 
 # compiled assets
 static/assets/
+static-gen/
