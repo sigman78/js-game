@@ -1,7 +1,11 @@
 import * as PIXI from "pixi.js";
-import initRenderer from "./initRenderer";
-import preloadResources from "./preloadResources";
+//import initRenderer from "./initRenderer";
+//import preloadResources from "./preloadResources";
 //import getTexture from "./getTexture";
+import Utils from "./utils";
+import Resources from "./resources";
+import Graphics from "./graphics";
+import { Input, Keys } from "./input";
 
 // "Global" variables we need to use across multiple functions
 let demoStage, ghostSprite;
@@ -18,14 +22,19 @@ const redraw = (time, renderer) => {
     ghostSprite.y += 0.8 * vSpeed;
 
     // Bounce on the view boundaries
-    if (ghostSprite.x <= 0 || ghostSprite.x + ghostSprite.width >= renderer.view.width)
+    if (ghostSprite.x <= 0 || ghostSprite.x + ghostSprite.width >= renderer.view.width) {
         hSpeed *= -1;
+    }
 
-    if (ghostSprite.y <= 0 || ghostSprite.y + ghostSprite.height >= renderer.view.height)
+    if (ghostSprite.y <= 0 || ghostSprite.y + ghostSprite.height >= renderer.view.height) {
         vSpeed *= -1;
+    }
 
     // Render the scene
     renderer.render(demoStage);
+
+    console.log(Input.key(Keys.ENTER), Input.keyDown(Keys.ENTER), Input.keyUp(Keys.ENTER));
+    Input.onFrameEnd();
 };
 
 /**
@@ -33,16 +42,23 @@ const redraw = (time, renderer) => {
  *  Creates the renderer, sets up the stages, and performs the initial render.
  */
 const setup = () => {
-
-    const renderer = initRenderer();
+    Input.init();
+    
+    const renderer = Graphics.init(window.innerWidth, window.innerHeight);
 
     // Create a container object called the `stage`
     demoStage = new PIXI.Container();
 
 //    const ghostTex = getTexture("images/ghost.png");
 //    ghostSprite = new PIXI.Sprite(ghostTex);
-    const ids = PIXI.loader.resources["sprites.json"].textures;
-    ghostSprite = new PIXI.Sprite(ids["001"]);
+    const ids = PIXI.loader.resources["sprites/battle.json"].textures;
+    
+    const animIds = Utils.range(0, 30).map(n => {
+        return ids[Utils.sprintf("asteroid-big-%03d.png", n)];
+    });
+    //ghostSprite = new PIXI.Sprite(ids["asteroid-big-001.png"]);
+    ghostSprite = new PIXI.extras.AnimatedSprite(animIds, true);
+    ghostSprite.gotoAndPlay(0);
 
     ghostSprite.position.set(160, 80);
 
@@ -57,6 +73,13 @@ const setup = () => {
 
     // Perform initial render
     redraw(-1, renderer);
+
+    window.addEventListener("resize", () => {
+        window.setTimeout(() => {
+            Graphics.resize(window.innerWidth, window.innerHeight);
+        }, 250);
+    });
+
 };
 
 /* ---------- Initialisation ---------- */
@@ -67,12 +90,11 @@ window.addEventListener("load", () => {
     // List of resources to load
     const resources = [
         "images/ghost.png",
-        "sprites.json"
+        "sprites/battle.json"
     ];
 
     // Then load the images
-    preloadResources(resources, () => {
-
+    Resources.preload(resources, () => {
         // Then run the setup() function
         setup();
     });

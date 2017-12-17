@@ -44,10 +44,10 @@
 
         "new-cap": "error",
         "camelcase": "error",
-        "brace-style": ["error", "stroustrup"],
+        //"brace-style": ["error", "stroustrup"],
         "indent": "error",
 
-        "curly": ["error", "multi"],            // curly braces around multiple statements only
+        "curly": ["error"],            // curly braces around multiple statements only
         "block-spacing": "error",
         "dot-notation": "error",                // `x.y` instead of `x["y"]`
         "rest-spread-spacing": ["error", "never"],   // `...xs` instead of `... xs`
