@@ -6,6 +6,7 @@ import Utils from "./utils";
 import Resources from "./resources";
 import Graphics from "./graphics";
 import { Input, Keys } from "./input";
+import Debug from "./debugger";
 
 // "Global" variables we need to use across multiple functions
 let demoStage, ghostSprite;
@@ -14,6 +15,7 @@ let hSpeed = 1, vSpeed = 1;
 // Define the main game loop
 const redraw = (time, renderer) => {
 
+    Debug.startOfFrame();
     // Redraw when browser is ready
     requestAnimationFrame(t => redraw(t, renderer));
 
@@ -35,6 +37,7 @@ const redraw = (time, renderer) => {
 
     console.log(Input.key(Keys.ENTER), Input.keyDown(Keys.ENTER), Input.keyUp(Keys.ENTER));
     Input.onFrameEnd();
+    Debug.endOfFrame();
 };
 
 /**
@@ -43,6 +46,7 @@ const redraw = (time, renderer) => {
  */
 const setup = () => {
     Input.init();
+    Debug.init();
     
     const renderer = Graphics.init(window.innerWidth, window.innerHeight);
 

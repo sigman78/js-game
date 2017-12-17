@@ -24,8 +24,9 @@ export class Game {
         renderer.plugins.interaction.on("mousedown", this.onMouseDown);
         window.addEventListener("resize", () => {
             // kicks in after 1/4 sec to prevent nasty reinit
-            window.setTimeout(this.onWindowResize, 25);
+            window.setTimeout(this.onWindowResize, 250);
         });
+        Input.init();
 
         // kick the timer on
         this.ticker.start();
@@ -46,9 +47,11 @@ export class Game {
         }
     }
 
+    // update game state, render to stage, clear input
     onFrameRender(time) {
         onUpdate(time);
         this.renderer.render(this.stage);
+        Input.onFrameEnd();
     }
 
     onUpdate(time) {

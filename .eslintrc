@@ -47,7 +47,7 @@
         //"brace-style": ["error", "stroustrup"],
         "indent": "error",
 
-        "curly": ["error"],            // curly braces around multiple statements only
+        //"curly": ["warn", "multi-or-nest", "consistent"],            // curly braces around multiple statements only
         "block-spacing": "error",
         "dot-notation": "error",                // `x.y` instead of `x["y"]`
         "rest-spread-spacing": ["error", "never"],   // `...xs` instead of `... xs`

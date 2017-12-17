@@ -85,6 +85,18 @@ class Utils {
         }
         return new RgbRamp(ramp);
     }
+
+    static escapeHTML(str) {
+        str = '' + str;
+        return str
+            .replace('&', '&amp;')
+            .replace('<', '&lt;')
+            .replace('>', '&gt;')
+            .replace('"', '&quot;')
+            .replace('\'', '&#x27;')
+            .replace('`', '&#x60;')
+            .replace('/', '&x2f;');
+    }
 }
 
 export default Utils;
