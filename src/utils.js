@@ -97,6 +97,16 @@ class Utils {
             .replace('`', '&#x60;')
             .replace('/', '&x2f;');
     }
+
+    static clamp(val, min, max) {
+        if (val < min) {
+            return min;
+        } else if (max < val) {
+            return max;
+        } else {
+            return val;
+        }
+    }
 }
 
 export default Utils;
