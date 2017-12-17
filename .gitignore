@@ -12,3 +12,6 @@ dist/
 # compiled assets
 static/assets/
 static-gen/
+
+# source assets ignore
+assets/
