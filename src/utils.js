@@ -107,6 +107,20 @@ class Utils {
             return val;
         }
     }
+
+    static bytesToHex(bytes) {
+        let res = "";
+        bytes.forEach((b) => {
+            res += ("0" + (b & 255)).toString(16).slice(-2);
+        });
+        return res;
+    }
+
+    static randomId(len=16) {
+        var id = new Uint8Array(len);
+        window.crypto.getRandomValues(id);
+        return bytesToHex(id).substr(0, len);
+    }
 }
 
 export default Utils;
