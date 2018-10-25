@@ -13,7 +13,7 @@ git clone https://github.com/Lapixx/pixi-babel.git
 Install the (dev)dependencies:
 
 ```bash
-npm install
+npm install --no-audit
 ```
 
 ## File structure
@@ -32,7 +32,7 @@ In this boilerplate, the `static/index.html` file loads the
 Start the development server (with hot reloading enabled):
 
 ```bash
-npm run dev
+npm run start
 ```
 
 After the initial build, navigate to **[localhost:8080](http://localhost:8080)**.
